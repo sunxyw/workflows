@@ -1,0 +1,18 @@
+name: Static Analysis
+description: Run static analysis on current environment
+
+runs:
+  using: composite
+  steps:
+
+    - name: Analysis (Composer Defined)
+      shell: bash
+      run: composer analyse
+
+    #    - name: Analysis (Vendor Direct)
+    #      shell: bash
+    #      run: vendor/bin/phpstan
+
+    - name: Echo banner
+      shell: bash
+      run: echo "Static analysis successful" >> $GITHUB_STEP_SUMMARY

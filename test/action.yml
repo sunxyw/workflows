@@ -1,0 +1,18 @@
+name: Test
+description: Test
+
+runs:
+  using: composite
+  steps:
+
+    - name: Setup problem matchers for PHPUnit
+      shell: bash
+      run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+    - name: Run PHPUnit (Composer Defined)
+      shell: bash
+      run: composer test
+
+    - name: Echo banner
+      shell: bash
+      run: echo "Test run successful" >> $GITHUB_STEP_SUMMARY
